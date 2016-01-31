@@ -5,6 +5,7 @@
 # is.even: Check if number is even
 # primest: Sieve of Eratosthenes
 # gcd: greatest common divisor
+# lcm: least common multiple
 #
 #   Build and Reload Package:  'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
@@ -58,6 +59,22 @@ primest <- function(n){
 
 # Greatest common divisor
 gcd <- function(a,b) {
-  r <- a%%b;
-  return(ifelse(r, gcd(b, r), b))
+  if (!(a==0 && b==0)){
+    if ( a == 0 )
+      return(b)
+    if ( b == 0 )
+      return(a)
+    r <- a%%b;
+    return(ifelse(r, gcd(b, r), b))
+  }
+  else stop('greatest common divisor not defined for (a,b)=(0,0)!')
+}
+
+# least common multiple
+lcm <- function(a, b)
+{
+  if (!(a==0 && b==0)){
+  return(abs(a*b)/gcd(a,b))
+  }
+  else stop('least common multiple not defined for (a,b)=(0,0)!')
 }
