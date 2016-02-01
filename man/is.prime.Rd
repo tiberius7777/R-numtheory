@@ -11,8 +11,7 @@ is.prime(n)
   \item{n}{A non-negative integer}
 }
 \details{
-  \enumerate{is.prime returns false for n=0.}
-  \enumerate{is.prime returns an error for n<0.}
+  is.prime expects a positive integer and returns an error for \eqn{n \le 0}. Algorithm is based on \url{http://librestats.com/2011/08/20/prime-testing-function-in-r/}
 }
 \examples{
 is.prime(3) # TRUE
