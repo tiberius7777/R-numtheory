@@ -14,5 +14,5 @@ Please feel free to contribute, though.
 - pollard_rho(n): Pollard's rho algorithm for prime factorization of large numbers
 
 ##To do:
-- Within the pollard_rho function
+- Within the is.prime function, can sieve(n) be used rather than primes.below. Should improve performance
 - Check for prime numbers > 10⁶
