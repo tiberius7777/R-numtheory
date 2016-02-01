@@ -6,9 +6,13 @@ Please use this package at your own risk. There's a reason why this has not been
 Please feel free to contribute, though.
 ##Functions implemented so far:
 - is.integer(n): Check for whole number
-- is.prime(n): Check for prime number, optimized for large numbers
+- is.prime(n): Check for prime number, optimized for numbers up to 10⁶.
 - is.even(n): Check if number is even
-- sieve(n): Sieve of Eratosthenes
+- sieve(n): Sieve of Eratosthenes, optimized for large numbers
 - gcd(a,b): Greatest common divisor
 - lcm(a,b): Least common multiple
 - pollard_rho(n): Pollard's rho algorithm for prime factorization of large numbers
+
+##To do:
+- Within the pollard_rho function
+- Check for prime numbers > 10⁶
