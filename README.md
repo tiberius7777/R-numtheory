@@ -5,10 +5,10 @@ At the moment this is still in experimental stage. I am using this as I'm going 
 Please use this package at your own risk. There's a reason why this has not been uploaded to CRAN (yet).
 Please feel free to contribute, though.
 ##Functions implemented so far:
-- is.integer: Check for whole number
-- is.prime: Check for prime number, optimized for large numbers
-- is.even: Check if number is even
-- sieve: Sieve of Eratosthenes
-- gcd: greatest common divisor
-- lcm: least common multiple
-- Pollard's rho algorithm for prime factorization of large numbers
+- is.integer(n): Check for whole number
+- is.prime(n): Check for prime number, optimized for large numbers
+- is.even(n): Check if number is even
+- sieve(n): Sieve of Eratosthenes
+- gcd(a,b): Greatest common divisor
+- lcm(a,b): Least common multiple
+- pollard_rho(n): Pollard's rho algorithm for prime factorization of large numbers

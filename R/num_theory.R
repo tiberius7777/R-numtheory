@@ -71,6 +71,10 @@ is.prime <- function(n){ # n=Integer you want to know if is/not prime
       }
     } else {
       # Prime list does not exist
+      # *****************************************************************
+      # Should this not rather use sieve instead of primes.below?
+      # sieve is much much faster!
+      # *****************************************************************
       assign("primes", primes.below(n,below.sqrt=TRUE), envir=.GlobalEnv)
       is.prime(n)
     }
