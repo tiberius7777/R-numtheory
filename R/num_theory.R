@@ -29,55 +29,92 @@ is.posint <- function(n){
 }
 
 # check if number is a prime number
-# http://librestats.com/2011/08/20/prime-testing-function-in-r/
-is.prime <- function(n){ # n=Integer you want to know if is/not prime
-  if ((n-floor(n)) > 0){
-    stop("is.prime only accepts natural number inputs\n")
-  } else if (n < 1){
-    stop("is.prime only accepts natural number inputs\n")
-  } else
-    # Prime list exists
-    if (try(is.vector(primes), silent=TRUE) == TRUE){
-      # Prime list is already big enough
-      if (n %in% primes){
-        TRUE
-      } else
-        if (n < tail(primes,1)){
-          FALSE
+# simple algorithm, see http://librestats.com/2011/08/20/prime-testing-function-in-r/
+# AKS algorithm, see http://math.stackexchange.com/questions/204560/implementing-aks-primality-prover
+# accuracy parameter needed for Miller-Rabin test
+# Miller-Rabin test not yet functional
+is.prime <- function(n, algorithm = c("Simple", "Miller-Rabin"), accuracy=7){ # n=Integer you want to know if is/not prime
+  # evaluate parameters
+  algorithm <- match.arg(algorithm)
+  if (algorithm == "Simple"){
+    if ((n-floor(n)) > 0){
+      stop("is.prime only accepts natural number inputs\n")
+      }
+      else if (n < 1){
+        stop("is.prime only accepts natural number inputs\n")
+      }
+      else
+      # Prime list exists
+      if (try(is.vector(primes), silent=TRUE) == TRUE){
+        # Prime list is already big enough
+        if (n %in% primes){
+          TRUE
         } else
-          if (n <= (tail(primes,1))^2){
-            flag <- 0
-            for (prime in primes){
-              if (n%%prime == 0){
-                flag <- 1
-                break
+          if (n < tail(primes,1)){
+            FALSE
+          } else
+            if (n <= (tail(primes,1))^2){
+              flag <- 0
+              for (prime in primes){
+                if (n%%prime == 0){
+                  flag <- 1
+                  break
+                }
+              }
+              if (flag == 0){
+                TRUE
+              }
+              else {
+                FALSE
               }
             }
-            if (flag == 0){
-              TRUE
-            }
-            else {
-              FALSE
-            }
-          }
-      # Prime list is too small; get more primes
-      else {
-        last.known <- tail(primes,1)
-        while ((last.known)^2 < n){
-          assign("primes", c(primes,next.prime(primes)), envir=.GlobalEnv)
+        # Prime list is too small; get more primes
+        else {
           last.known <- tail(primes,1)
+          while ((last.known)^2 < n){
+            assign("primes", c(primes,next.prime(primes)), envir=.GlobalEnv)
+            last.known <- tail(primes,1)
+          }
+          is.prime(n)
         }
+      } else {
+        # Prime list does not exist
+        # *****************************************************************
+        # Should this not rather use sieve instead of primes.below?
+        # sieve is much much faster!
+        # *****************************************************************
+        assign("primes", primes.below(n,below.sqrt=TRUE), envir=.GlobalEnv)
         is.prime(n)
       }
-    } else {
-      # Prime list does not exist
-      # *****************************************************************
-      # Should this not rather use sieve instead of primes.below?
-      # sieve is much much faster!
-      # *****************************************************************
-      assign("primes", primes.below(n,below.sqrt=TRUE), envir=.GlobalEnv)
-      is.prime(n)
     }
+    else if (algorithm=="Miller-Rabin"){
+      s<-0
+      d<-n-1
+      while(d%%2 == 0){
+        d<-d%/%2
+        s<-s+1
+      }
+      for (i in 0:accuracy-1){
+        a<-as.integer(runif(1,2,n-2))
+        x<-a^d %% n
+        if(!((x==1)||(x==(n-1)))){
+          r<-1
+          for(r in 1:(s-1)){
+            x<-x^2%%n
+            if(x==1)
+              return(FALSE)
+            if(x==(n-1)){
+              a<-0
+              break
+            }
+          }
+          if (r==s)
+            return(FALSE)
+        }
+        return(TRUE)
+      }
+    }
+    else stop("No primality algorithm defined")
 }
 
 next.prime <- function(primes){ # primes=Known prime list
@@ -204,7 +241,7 @@ pollard_rho <- function(n){
     }
     return(factor)
   }
-  else stop ("pollard_rho requires a positive integer")
+  else stop ("requires a positive integer")
 }
 
 # Factorisation
@@ -223,12 +260,34 @@ factorize <- function(n) {
   d
 }
 
-# simple divisors function
-# to be deleted
-simple_divisors <- function(n) {
-  n <- as.integer(n)
-  div <- seq_len(abs(n))
-  factors <- div[n %% div == 0L]
-  return(factors)
+divisors <-function(n){
+  if (is.posint(n)){
+    simple_divisors(n)
+  }
+  else stop ("requires a positive integer")
 }
 
+# simple divisors function, works until 10⁹
+simple_divisors <- function(n) {
+  if (is.posint(n)){
+    n <- as.integer(n)
+    div <- seq_len(abs(n))
+    factors <- div[n %% div == 0L]
+    return(factors)
+  }
+  else stop ("requires a positive integer")
+}
+
+tau<-function(n){
+  if (is.posint(n)){
+    return(length(divisors(n)))
+  }
+  else stop ("requires a positive integer")
+}
+
+sigma<-function(n){
+  if (is.posint(n)){
+    sum(divisors(n))
+  }
+else stop ("requires a positive integer")
+}
