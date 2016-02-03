@@ -1,18 +1,27 @@
-# R Package christian
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
+#                    R Package numtheory
+#                 Christian Bessenroth 2016
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # is.integer: Check for whole number
 # is.prime: Check for prime number
 # is.even: Check if number is even
 # sieve: Sieve of Eratosthenes
 # gcd: greatest common divisor
 # lcm: least common multiple
-# Pollard's rho algorithm
-#
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+# pollard_rho: Pollard's rho algorithm
+# factorize: Factorisation of an integer
+# divisors: List of all integer divisors of an integer number
+# tau: number of all divisors of an integer n
+# sigma: sum of all divisors of an integer n
+# primorial: factorial of all prime numbers smaller than n
 
-# prüfen, ob Zahl n gerade ist
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# check if n is even
 is.even <- function(n) {
   return(ifelse((n %% 2) == 0, TRUE,FALSE))
 }
@@ -278,6 +287,7 @@ simple_divisors <- function(n) {
   else stop ("requires a positive integer")
 }
 
+# tau: number of all divisors of an integer n
 tau<-function(n){
   if (is.posint(n)){
     return(length(divisors(n)))
@@ -285,9 +295,18 @@ tau<-function(n){
   else stop ("requires a positive integer")
 }
 
+# sigma: sum of all divisors of an integer n
 sigma<-function(n){
   if (is.posint(n)){
     sum(divisors(n))
   }
 else stop ("requires a positive integer")
+}
+
+#primorial:
+primorial <- function(n){
+  if (is.posint(n)){
+    prod(sieve(n))
+  }
+  else stop ("requires a positive integer")
 }
