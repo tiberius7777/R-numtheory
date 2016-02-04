@@ -17,6 +17,7 @@
 # tau: number of all divisors of an integer n
 # sigma: sum of all divisors of an integer n
 # primorial: factorial of all prime numbers smaller than n
+# Euler's totient function phi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -260,7 +261,7 @@ factorize <- function(n) {
   div <- 2; nxt <- 3; rest <- n
   while( rest != 1 ) {
     while( rest%%div == 0 ) {
-      d <- c(d, div)
+        d<-c(d, div)
       rest <- floor(rest / div)
     }
     div <- nxt
@@ -271,7 +272,7 @@ factorize <- function(n) {
 
 divisors <-function(n){
   if (is.posint(n)){
-    simple_divisors(n)
+    simple_divisors(n) #alt
   }
   else stop ("requires a positive integer")
 }
@@ -307,6 +308,26 @@ else stop ("requires a positive integer")
 primorial <- function(n){
   if (is.posint(n)){
     prod(sieve(n))
+  }
+  else stop ("requires a positive integer")
+}
+
+# Euler's totient function phi
+phi <- function(n){
+  if (is.posint(n)){
+    result <- n
+    p <- unique(factorize (n))
+    for (i in p){
+     #if (i>1){
+      while(n%%i==0){
+        n <- n%/%i
+      }
+      result <- (result - result %/% i)
+    #}
+    }
+    if (n>1)
+      result = (result - result %/% n)
+    return(result)
   }
   else stop ("requires a positive integer")
 }

@@ -4,7 +4,7 @@
   Sum of all divisors of a natural number n
   }
 \description{
-  Sum of all divisors of a natural number n.
+  σ(n): Sum of all divisors of a natural number n.
   }
 \usage{
   sigma(n)
@@ -17,5 +17,5 @@
   }
 \examples{
   sigma(100)=217
-  sigma(10) =118 (=1+2+5+10)
+  sigma(10) =18 (=1+2+5+10)
   }
