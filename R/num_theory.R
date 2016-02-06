@@ -1,11 +1,3 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-#                    R Package numtheory
-#                 Christian Bessenroth 2016
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# is.integer: Check for whole number
 # is.prime: Check for prime number
 # is.even: Check if number is even
 # sieve: Sieve of Eratosthenes
@@ -30,12 +22,19 @@ is.even <- function(n) {
 # check if number is a whole number
 # n=0 returns false
 is.posint <- function(n){
-  if (n==0) {
-    FALSE
-  }
-  else {
-    !grepl("[^[:digit:]]", format(n,  digits = 20, scientific = FALSE))
-  }
+#  if (n==0) {
+#    FALSE
+#  }
+#  else {
+#    !grepl("[^[:digit:]]", format(n,  digits = 20, scientific = FALSE))
+#  }
+  (is.int(n) && (n>0))
+}
+
+# check if number is a whole number
+# workaround because base::is.integer(n) does not check if n is stored as an integer
+is.int <- function(n){
+  n == round(n)
 }
 
 # check if number is a prime number
@@ -330,4 +329,67 @@ phi <- function(n){
     return(result)
   }
   else stop ("requires a positive integer")
+}
+
+
+# Legendre function, a multiplicative function with values 1, -1, 0 that is a
+# quadratic character modulo a prime number p.
+# Its value on a nonzero quadratic residue mod p is 1 and on a non-quadratic
+# residue is -1. Its value on zero is 0
+# See also https://martin-thoma.com/calculate-legendre-symbol/
+
+legendre <- function(a, p){
+  if (is.int(a) && (p>=3)){
+    if ((a>=p) || (a<0)){
+      #cat("a>=p, calling legendre(a=", a%%p, ",p=",p, "\n")
+      legendre(a%%p,p)
+    }
+    else if ((a==0) || (a==1)){
+      return(a)
+    }
+    else if (a==2){
+      if ((p%%8==1) || (p%%8 ==7)){
+        return(1)
+      }
+      else return(-1)
+    }
+    else if (a==p-1){
+      if (p%%4==1){
+        #cat("a==p-1 --> 1\n")
+        return(1)
+      }
+      else{
+        #cat("a==p-1 --> -1\n")
+        return(-1)
+      }
+    }
+    else if (!is.prime(a)){
+      #cat("a not prime\n")
+      factors<-factorize(a)
+      product <- 1
+      for (pi in factors){
+        product<-product*legendre(pi,p)
+      }
+      return(product)
+    }
+    else{
+      if ( (((p-1)%/%2)%%2==0) || (((a-1)%/%2)%%2==0)){
+        #cat("Calling legendre(a=", p, ",p=",a, "\n")
+        legendre(p,a)
+      }
+      else{
+        #cat("Calling (-1)*legendre(a=", p, ",p=",a, "\n")
+        (-1)*legendre(p,a)
+      }
+    }
+  }
+  else{
+    stop("requires one integer and one prime number >=3 as input")
+  }
+}
+
+# Modular square root
+# y²=x mod n
+msqrt <- function (x,n){
+
 }

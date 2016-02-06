@@ -7,7 +7,8 @@ Please use this package at your own risk. There's a reason why this has not been
 Please feel free to contribute, though.
 
 ##Functions implemented so far:
-- is.integer(n): Check for whole number
+- is.int(n): Check if numer is a whole number, as a workaround given that base::is.integer doees not do this
+- is.posint(n): Check for positive whole number
 - is.prime(n): Check for prime number, working well for numbers up to 10¹¹.
 - is.even(n): Check if number is even
 - sieve(n): Sieve of Eratosthenes, optimized for large numbers up to 10⁸
@@ -19,10 +20,12 @@ Please feel free to contribute, though.
 - sigma(n): sum of all divisors of n. Works well up to around 10⁹.
 - primorial(n): factorial of all prime numbers < n. Works well up to n=700.
 - phi(n): Euler's Phi function (also known as Euler's "totient"" function). Works well up to 10¹¹
+- legendre(a,p): 
 
 ##To do:
 - Within the is.prime function, should 'sieve(n)' be used rather than 'primes.below'? Should improve performance
 - Check for prime numbers > 10¹¹
 - AKS Primality Test
 - Rabin-Miller Primality Test
+- Modular Square Root
 
