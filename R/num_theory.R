@@ -11,7 +11,7 @@
 # primorial: factorial of all prime numbers smaller than n
 # Euler's totient function phi
 # legendre: Legendre Symbol
-# Euclid: Extended Euclidean Algorithm to solve a system of linear congruences
+# igcdex: Extended Euclidean Algorithm
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -397,11 +397,36 @@ msqrt <- function (x,n){
 }
 
 # Extended Euclidean Algorithm
-# to solve a system of linear congruences
-# see https://martin-thoma.com/solve-linear-congruence-equations/
-ext_euclid <- function(a,b){
-  aO <- a
-  bO <- b
+# Calculates gcd(a,b) and a linear combination such that
+# gcd(a,b) = a*x + b*y
+# see https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
+igcdex <- function(a,b){
+  if ((is.int(a)) && is.int(b)){
+    s <- 0
+    old_s <- 1
+    t <- 1
+    old_t <- 0
+    r <- b
+    old_r <- a
+    while (!(r==0)){
+      quotient <- old_r%/%r
+      prov <- r
+      r <- (old_r - quotient * prov)
+      old_r <- prov
 
+      prov <- s
+      s <- (old_s - quotient * prov)
+      old_s <- prov
+
+      prov <- t
+      t <- (old_t - quotient * prov)
+      old_t <- prov
+    }
+    # return s and t such that g = sa + tb
+    # old_r now also contains gcd(a,b) but is not (yet) returned here
+    return (c(old_s,old_t))
+  }
+  else stop("requires two integer numbers as input")
 }
 
+# solve a system of linear congruences

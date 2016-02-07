@@ -20,7 +20,8 @@ Please feel free to contribute, though.
 - sigma(n): sum of all divisors of n. Works well up to around 10⁹.
 - primorial(n): factorial of all prime numbers < n. Works well up to n=700.
 - phi(n): Euler's Phi function (also known as Euler's "totient"" function). Works well up to 10¹¹
-- legendre(a,p): 
+- legendre(a,p): Legendre symbol for quadratic residues
+- igcdex(a,b): Extended Euclidean Algorithm to find s and t such that gcd(a,b) = sa + tb
 
 ##To do:
 - Within the is.prime function, should 'sieve(n)' be used rather than 'primes.below'? Should improve performance
