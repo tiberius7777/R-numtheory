@@ -10,6 +10,8 @@
 # sigma: sum of all divisors of an integer n
 # primorial: factorial of all prime numbers smaller than n
 # Euler's totient function phi
+# legendre: Legenre Symbol
+# Euclid: Extended Euclidean Algorithm to solve a system of linear congruences
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -393,3 +395,13 @@ legendre <- function(a, p){
 msqrt <- function (x,n){
 
 }
+
+# Extended Euclidean Algorithm
+# to solve a system of linear congruences
+# see https://martin-thoma.com/solve-linear-congruence-equations/
+ext_euclid <- function(a,b){
+  aO <- a
+  bO <- b
+
+}
+

@@ -28,4 +28,5 @@ Please feel free to contribute, though.
 - AKS Primality Test
 - Rabin-Miller Primality Test
 - Modular Square Root
+- Jacobi symbol
 
