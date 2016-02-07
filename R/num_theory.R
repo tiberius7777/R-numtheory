@@ -10,7 +10,7 @@
 # sigma: sum of all divisors of an integer n
 # primorial: factorial of all prime numbers smaller than n
 # Euler's totient function phi
-# legendre: Legenre Symbol
+# legendre: Legendre Symbol
 # Euclid: Extended Euclidean Algorithm to solve a system of linear congruences
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
