@@ -1,7 +1,7 @@
 # R-numtheory
-R Package that provides number theory functions, optimized for performance on large numbers.
+R package that provides number theory functions, optimized for performance on large numbers.
 ## Current status
-At the moment this is still in experimental stage. I am using this as a replacement for Maple which I find difficult to use, therefore the plan is to re-engineer standard Maple functions and more exotice ones in standard R syntax, without linking any further code. Focus will be on factorization of large numbers and integer divisors.
+At the moment this is still in experimental stage. I am using this as a replacement for Maple which I find difficult to use, therefore the plan is to re-engineer standard Maple functions and more exotic ones in standard R syntax, without linking any further code. Focus will be on factorization of large numbers and integer divisors.
 Please use this package at your own risk. There's a reason why this has not been uploaded to CRAN yet.
 
 Please feel free to contribute, though.
