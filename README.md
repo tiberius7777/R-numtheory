@@ -2,11 +2,11 @@
 R package that provides number theory functions, optimized for performance on large numbers.
 ## Current status
 At the moment this is still in experimental stage. I am using this as a replacement for Maple which I find difficult to use, therefore the plan is to re-engineer standard Maple functions and more exotic ones in standard R syntax, without linking any further code. Focus will be on factorization of large numbers and integer divisors.
-Please use this package at your own risk. There's a reason why this has not been uploaded to CRAN yet.
+Use at your own risk, this is a work in progress.
 
 Please feel free to contribute, though.
 
-##Functions implemented so far:
+## Functions implemented so far:
 - is.int(n): Check if numer is a whole number, as a workaround given that base::is.integer doees not do this
 - is.posint(n): Check for positive whole number
 - is.prime(n): Check for prime number, working well for numbers up to 10¹¹.
@@ -23,7 +23,7 @@ Please feel free to contribute, though.
 - legendre(a,p): Legendre symbol for quadratic residues
 - igcdex(a,b): Extended Euclidean Algorithm to find s and t such that gcd(a,b) = sa + tb
 
-##To do:
+## To do:
 - Within the is.prime function, should 'sieve(n)' be used rather than 'primes.below'? Should improve performance
 - Check for prime numbers > 10¹¹
 - AKS Primality Test
