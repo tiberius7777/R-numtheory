@@ -4,7 +4,7 @@ R package that provides number theory functions, optimized for performance on la
 At the moment this is still in experimental stage. I am using this as a replacement for Maple which I find difficult to use, therefore the plan is to re-engineer standard Maple functions and more exotic ones in standard R syntax, without linking any further code. Focus will be on factorization of large numbers and integer divisors.
 Use at your own risk, this is a work in progress.
 
-Please feel free to contribute, though.
+Feel free to contribute, though.
 
 ## Functions implemented so far:
 - is.int(n): Check if numer is a whole number, as a workaround given that base::is.integer doees not do this
