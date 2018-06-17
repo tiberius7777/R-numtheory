@@ -7,7 +7,7 @@ Use at your own risk, this is a work in progress.
 Feel free to contribute, though.
 
 ## Functions implemented so far:
-- is.int(n): Check if numer is a whole number, as a workaround given that base::is.integer doees not do this
+- is.int(n): Check if numer is a whole number, as a workaround given that base::is.integer does not do this
 - is.posint(n): Check for positive whole number
 - is.prime(n): Check for prime number, working well for numbers up to 10¹¹.
 - is.even(n): Check if number is even
