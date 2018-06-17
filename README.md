@@ -19,7 +19,7 @@ Feel free to contribute, though.
 - tau(n): number of divisors of n. Works well up to around 10⁹.
 - sigma(n): sum of all divisors of n. Works well up to around 10⁹.
 - primorial(n): factorial of all prime numbers < n. Works well up to n=700.
-- phi(n): Euler's Phi function (also known as Euler's "totient"" function). Works well up to 10¹¹
+- phi(n): Euler's Phi function (also known as Euler's "totient" function). Works well up to 10¹¹
 - legendre(a,p): Legendre symbol for quadratic residues
 - igcdex(a,b): Extended Euclidean Algorithm to find s and t such that gcd(a,b) = sa + tb
 
